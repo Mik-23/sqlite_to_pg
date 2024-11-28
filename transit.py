@@ -21,7 +21,7 @@ def load_from_sqlite(connection: sqlite3.Connection, pg_conn: _connection, table
 
 
 if __name__ == '__main__':
-    with sqlite3.connect('db.sqlite') as sqlite_conn, psycopg.connect(
+    with connection_sqlite as sqlite_conn, psycopg.connect(
         **dsl, row_factory=dict_row, cursor_factory=ClientCursor
     ) as pg_conn:
         load_from_sqlite(sqlite_conn, pg_conn, 'all')
